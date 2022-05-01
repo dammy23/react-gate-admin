@@ -1,0 +1,355 @@
+<div class="page-title">
+  <h3>{{title}}</h3>
+</div>
+<div class="row">
+
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">Add {{title}}</div>
+      <div class="card-body">
+        <h5 class="card-title">Fill all required fields.</h5>
+        <div class="col-lg-12">
+          <button
+            id="btnAdd"
+            class="btn btn-primary"
+            data-toggle="collapse"
+            data-target="#inviteDiv"
+          >Add Record</button>
+        </div>
+        <div class="col-lg-12 collapse" id="inviteDiv">
+          <form
+            accept-charset="utf-8"
+            id="inviteForm"
+            method="post"
+            enctype="multipart/form-data"
+          >
+          <input type="hidden" name="creator_id" value="{{creator}}"/>
+          
+            <div class="mb-3">
+              <label for="visitor_name" class="form-label required">Visitor Name</label>
+              <input
+                type="text"
+                name="visitor_name"
+                placeholder="Visitor Name"
+                class="form-control"
+                required=""
+              />
+
+            </div>
+            <div class="mb-3">
+              <label for="visitor_email" class="form-label">Visitor Email</label>
+              <input
+                type="email"
+                name="visitor_email"
+                placeholder="Visitor Email"
+                class="form-control"
+               
+              />
+            </div>
+
+             <div class="mb-3">
+              <label for="visitor_phone" class="form-label">Visitor Phone</label>
+              <input
+                type="tel"
+                name="visitor_phone"
+                placeholder="Visitor Phone"
+                class="form-control"
+                
+              />
+            </div>
+
+             <div class="mb-3">
+              <label for="no_of_people" class="form-label">No. of Visitors</label>
+              <input
+                type="number"
+                name="no_of_people"
+                placeholder="No. of People"
+                class="form-control"
+                value="0"
+                required
+                min="0"
+                
+              />
+            </div>
+             <div class="mb-3">
+              <label for="expiry_date" class="form-label required">Expiry Date</label>
+              <input
+                type="datetime-local"
+                name="expiry_date"
+                class="form-control"
+                value="{{date}} {{time}}"
+                
+              />
+             
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Visitor Image</label>
+              <input
+                type="file"
+                name="image"
+                accept="*.jpg,*.png,*.gif"
+                class="form-control"
+               
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="checkbox"
+                name="multiple_entry_exit"
+                 checked="true"
+                 value="true"
+                />
+              <label for="multiple_entry_exit" class="form-label">Multiple Entry/Exit</label>
+              
+            </div>
+            <div class="mb-3">
+              <input
+                type="checkbox"
+                name="check_visitor"
+                value="true"
+               
+                /> <label for="check_visitor" class="form-label">Call To Verify Visitor Before Entry </label>
+              
+            </div>
+            <div class="mb-3">
+              <input type="submit" class="btn btn-primary" value="Submit" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-12">
+    <div class="card">
+      <div class="card-header">All Invites</div>
+      <div class="card-body">
+        <p class="card-title"></p>
+        <table class="table table-hover" id="dataTables-invite" width="100%">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Visitor Name</th>
+              <th>Visitor Contact</th>
+              <th>No. of Visitor</th>
+              <th>Date Created</th>
+              <th>Expiry Date</th>
+              <th>Status</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each data}}
+              
+              <tr>
+                <td>{{math @index "+" 1}}</td>
+                <td>{{this.creator.name}}</td>
+                <td>{{this.visitor_name}} </td>
+                <td>{{this.visitor_email}} {{this.visitor_phone}}</td>
+                <td>{{this.no_of_people}} </td>
+                 <td>{{formatDate this.created_at "short"}}</td>
+                  <td>{{formatDate this.expiry_date "short"}}</td>
+                  <td> {{#if this.isActive}}
+                      Active
+                    {{else}}
+
+                        Not Active
+                    {{/if}}
+                  </td>
+                <td>
+                  {{#if this.isActive}}
+                  <button
+                    class="btn btn-primary edit-invite"
+                    data-name="{{this.visitor_name}}"
+                    data-email="{{this.visitor_email}}"
+                    data-phone="{{this.visitor_phone}}"
+                    data-people="{{this.no_of_people}}"
+                    data-image="{{this.visitor_image}}"
+                    data-expiry="{{this.expiry_date}}"
+                    data-check-visitor="{{this.check_visitor}}"
+                    data-entry="{{this.multiple_entry_exit}}"
+
+                    
+                    
+                    data-id="{{this.id}}"
+                  ><i class="fas fa-edit"></i> Edit</button>
+                  {{/if}}
+                  </td>
+                <td>
+                  {{#if this.isActive}}
+                  <button
+                    class="btn btn-danger delete-invite"
+                    data-name="{{this.name}}"
+                    data-id="{{this.id}}"
+                    data-image="{{this.image}}"
+                  ><i class="fas fa-trash"></i> Delete</button>
+                  {{/if}}
+                  </td>
+                  
+              </tr>
+
+
+            {{/each}}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<button
+  type="button"
+  class="btn btn-danger hidden"
+  data-toggle="modal"
+  data-target="#form"
+  id="btnModal"
+>
+  See Modal with Form
+</button>
+
+<div
+  class="modal fade"
+  id="form"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="exampleModalLabel">Update Invite</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="inviteFormUpdate" method="PUT" enctype="multipart/form-data">
+        <div class="modal-body">
+         <div class="mb-3">
+              <label for="visitor_name" class="form-label required">Visitor Name</label>
+              <input
+                type="text"
+                name="visitor_name"
+                id="visitor_name"
+                placeholder="Visitor Name"
+                class="form-control"
+                required=""
+              />
+
+            </div>
+            <div class="mb-3">
+              <label for="visitor_email" class="form-label">Visitor Email</label>
+              <input
+                type="email"
+                name="visitor_email"
+                id="visitor_email"
+                placeholder="Visitor Email"
+                class="form-control"
+               
+              />
+            </div>
+
+             <div class="mb-3">
+              <label for="visitor_phone" class="form-label">Visitor Phone</label>
+              <input
+                type="tel"
+                name="visitor_phone"
+                id="visitor_phone"
+                placeholder="Visitor Phone Number"
+                class="form-control"
+                
+              />
+            </div>
+
+             <div class="mb-3">
+              <label for="no_of_people" class="form-label">No. of Visitors</label>
+              <input
+                type="number"
+                name="no_of_people"
+                id="no_of_people"
+                placeholder="No. of People"
+                class="form-control"
+                value="0"
+                required
+                min="0"
+                
+              />
+            </div>
+             <div class="mb-3">
+              <label for="expiry_date" class="form-label required">Expiry Date</label>
+              <input
+                type="datetime-local"
+                name="expiry_date"
+                id="expiry_date"
+                class="form-control"
+                value="{{date}} {{time}}"
+                
+              />
+             
+            </div>
+             <div class="form-group">
+            <img
+              src=""
+              id="image"
+              class="image-responsive"
+              width="200"
+              alt=""
+            />
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Visitor Image</label>
+              <input
+                type="file"
+                name="image"
+                accept="*.jpg,*.png,*.gif"
+                class="form-control"
+               
+              />
+
+             
+
+            </div>
+            <div class="mb-3">
+              <input
+                type="checkbox"
+                name="multiple_entry_exit"
+                id="multiple_entry_exit"
+                 checked="true"
+                 value="true"
+                />
+              <label for="multiple_entry_exit" class="form-label">Multiple Entry/Exit</label>
+              
+            </div>
+            <div class="mb-3">
+              <input
+                type="checkbox"
+                name="check_visitor"
+                id="check_visitor"
+                value="true"
+               
+                /> <label for="check_visitor" class="form-label">Call To Verify Visitor Before Entry </label>
+              
+            </div>
+            
+          <input type="hidden" name="id" id="recid" />
+
+        </div>
+        <div class="modal-footer border-top-0 d-flex justify-content-center">
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+

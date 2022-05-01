@@ -1,0 +1,70 @@
+<div class="page-title">
+  <h3>{{title}}</h3>
+</div>
+<div class="row">
+
+  <div class="col-md-12 col-lg-12">
+    <div class="card">
+      <div class="card-header">All Invites</div>
+      <div class="card-body">
+        <p class="card-title"></p>
+        <div class="table-responsive">
+        <table class="table table-hover" id="dataTables-invite" width="100%">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Visitor Name</th>
+              <th>Visitor Contact</th>
+              <th>No. of Visitor</th>
+              <th>Date Created</th>
+              <th>Expiry Date</th>
+              <th>Status</th>
+              <th></th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {{#each data}}
+              
+              <tr>
+                <td>{{math @index "+" 1}}</td>
+                <td>{{this.creator.name}}</td>
+                <td>{{this.visitor_name}} </td>
+                <td>{{this.visitor_email}} {{this.visitor_phone}}</td>
+                <td>{{this.no_of_people}} </td>
+                 <td>{{formatDate this.created_at "short"}}</td>
+                  <td>{{formatDate this.expiry_date "short"}}</td>
+                  <td> {{#if this.isActive}}
+                      Active
+                    {{else}}
+
+                        Not Active
+                    {{/if}}
+                  </td>
+                  <td>
+                  <button
+                    class="btn btn-primary visit" data-id="{{this.id}}"
+                  ><i class="mdi mdi-door-open"></i> Visits</button>
+                  
+                  </td>
+                  
+              </tr>
+
+
+            {{/each}}
+
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+

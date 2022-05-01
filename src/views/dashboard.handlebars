@@ -1,0 +1,227 @@
+<div class="row">
+  <div class="col-md-12 page-header">
+    <div class="page-pretitle">Overview</div>
+    <h2 class="page-title">{{title}}</h2>
+  </div>
+</div>
+
+
+<div class="row">
+								<div class="col-md-6 col-lg-6 col-xl-3">
+									<div class="card widget-block p-4 rounded bg-primary border">
+										<div class="card-block">
+											<i class="mdi mdi-door-open mr-4 text-white"></i>
+											<h4 class="text-white my-2">{{stat.dailyVisitationCount}}</h4>
+											<p>Daily Visitation</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6 col-xl-3">
+									<div class="card widget-block p-4 rounded bg-warning border">
+										<div class="card-block">
+											<i class="mdi mdi-email mr-4 text-white"></i>
+											<h4 class="text-white my-2">{{stat.dailyInviteCount}}</h4>
+											<p>Daily Invitation</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6 col-xl-3">
+									<div class="card widget-block p-4 rounded bg-danger border">
+										<div class="card-block">
+											<i class="mdi mdi-security  mr-4 text-white"></i>
+											<h4 class="text-white my-2">{{stat.guardCount}}</h4>
+											<p>Security Guards</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6 col-xl-3">
+									<div class="card widget-block p-4 rounded bg-success border">
+										<div class="card-block">
+											<i class="mdi mdi-account-alert mr-4 text-white"></i>
+											<h4 class="text-white my-2">9503</h4>
+											<p>Support Request</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+               <div class="row">
+            <div class="col-md-12">
+
+              <!-- User activity statistics -->
+              <div class="card card-default" id="user-activity">
+                <div class="row no-gutters">
+                  <div class="col-xl-12">
+                    <div class="border-right">
+                      <div class="card-header justify-content-between py-5">
+                        <h2>Traffic Overview</h2>
+                        <div class="date-range-report ">
+                          <span></span>
+                        </div>
+                      </div>
+                      <ul class="nav nav-tabs nav-style-border justify-content-between justify-content-xl-start border-bottom" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active pb-md-0" data-toggle="tab" href="#user" role="tab" aria-controls="" aria-selected="true">
+                            <span class="type-name">User</span>
+                            <h4 class="d-inline-block mr-2 mb-3">5248</h4>
+                            <span class="text-success ">5%
+                              <i class="mdi mdi-arrow-up-bold"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link pb-md-0" data-toggle="tab" href="#session" role="tab" aria-controls="" aria-selected="false">
+                            <span class="type-name">Sessions</span>
+                            <h4 class="d-inline-block mr-2 mb-3">638</h4>
+                            <span class="text-success ">20%
+                              <i class="mdi mdi-arrow-up-bold"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link pb-md-0" data-toggle="tab" href="#bounce" role="tab" aria-controls="" aria-selected="false">
+                            <span class="type-name">Bounce Rate</span>
+                            <h4 class="d-inline-block mr-2 mb-3">36.9%</h4>
+                            <span class="text-danger ">7%
+                              <i class="mdi mdi-arrow-down-bold"></i>
+                            </span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link pb-md-0" data-toggle="tab" href="#session-duration" role="tab" aria-controls="" aria-selected="false">
+                            <span class="type-name">Session Duration</span>
+                            <h4 class="d-inline-block mr-2 mb-3">4m 49s</h4>
+                            <span class="text-success ">15%
+                              <i class="mdi mdi-arrow-up-bold"></i>
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                      <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                          <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="home-tab">
+                            <canvas id="activity" class="chartjs"></canvas>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer d-flex flex-wrap bg-white border-top">
+                        <a href="#" class="text-uppercase py-3">Daily incoming and outgoing traffic data</a>
+                      </div>
+                    </div>
+                  </div>
+                 
+                </div>
+              </div>
+
+            </div>
+          </div>
+<div class="row">
+  
+  <div class="col-md-6">
+    <div class="card">
+      <div class="content">
+        <div class="head">
+          <h5 class="mb-0">Top Household by Visitation</h5>
+          <p class="text-muted">Current year estate visitor data</p>
+        </div>
+        <div class="canvas-wrapper">
+          <table class="table table-striped">
+            <thead class="success">
+              <tr>
+                <th>Household</th>
+                <th class="text-end">Visitations</th>
+              </tr>
+            </thead>
+            <tbody>
+               {{#each stat.topVisit}}
+                  <tr>
+                    <td><i class="mdi mdi-account"></i> {{this.name}}</td>
+                    <td class="text-end">{{this.visitations}}</td>
+                  </tr>
+
+              {{/each}}
+             
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="content">
+        <div class="head">
+          <h5 class="mb-0">Daily Visitation Logs</h5>
+          <p class="text-muted">Current day visitor data</p>
+        </div>
+        <div class="canvas-wrapper">
+          <table class="table table-striped">
+            <thead class="success">
+              <tr>
+                <th>Visitor</th>
+                <th class="text-end">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+               {{#each stat.dailyVisitation}}
+             
+           
+              <tr>
+                <td>{{this.visitor_name}}
+                  <a href="#"><i class="fas fa-link blue"></i></a></td>
+                <td class="text-end">{{getVisitStatus this.type}}
+
+
+                </td>
+              </tr>
+
+               {{/each}}
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row mt-md-2" >
+  
+								<div class="col-md-6 col-lg-6 col-xl-3">
+									<div class="media widget-media p-4 bg-white border">
+										<i class="mdi mdi-account text-blue mr-4"></i>
+										<div class="media-body align-self-center">
+											<h4 class="text-primary mb-2">{{stat.landlordCount}}</h4>
+											<p>LANDLORDS</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6 col-xl-3">
+									<div class="media widget-media p-4 rounded bg-white border">
+										<i class="mdi mdi-account-group text-warning mr-4"></i>
+										<div class="media-body align-self-center">
+											<h4 class="text-primary mb-2">{{stat.tenantCount}}</h4>
+											<p>TENANTS</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6 col-xl-3">
+									<div class="media widget-media p-4 rounded bg-white border">
+										<i class="mdi mdi-email text-danger mr-4"></i>
+										<div class="media-body align-self-center">
+											<h4 class="text-primary mb-2">{{stat.inviteCount}}</h4>
+											<p>INVITATION</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6 col-xl-3">
+									<div class="media widget-media p-4 rounded bg-white border">
+										<i class="mdi mdi-door-open text-success mr-4"></i>
+										<div class="media-body align-self-center">
+											<h4 class="text-primary mb-2">{{stat.visitationCount}}</h4>
+											<p>VISITATION</p>
+										</div>
+									</div>
+								</div>
+							</div>

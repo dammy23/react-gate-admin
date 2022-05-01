@@ -1,0 +1,24 @@
+{
+    "type": "mongodb",
+    "useUnifiedTopology": true,
+    "host": "localhost",
+    "port": 27017,
+    "database": "gatepass",
+    "synchronize": true,
+    "logging": false,
+    "entities": [
+        "src/modules/user/infra/typeorm/entities/User.ts",
+        "src/modules/invitation/infra/typeorm/entities/Invitation.ts",
+        "src/modules/tenant/infra/typeorm/entities/Tenant.ts",
+        "src/modules/visitation/infra/typeorm/entities/Visitation.ts",
+        "src/modules/settings/infra/typeorm/entities/Setting.ts"
+    ],
+    "migrations": [
+        "src/database/migration/*.ts"
+    ],
+    
+    "cli": {
+        "entitiesDir": "src/modules",
+        "migrationsDir": "src/database/migration/"
+    }
+ }
