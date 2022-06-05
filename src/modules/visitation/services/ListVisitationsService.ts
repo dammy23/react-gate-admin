@@ -2,13 +2,43 @@ import { getRepository } from 'typeorm';
 
 import Visitation from '../infra/typeorm/entities/Visitation';
 
+interface Request {
+    id:string;
+    options: any;
+    page: number;
+    take: number;
+   
+}
+
 class ListVisitationsService {
-    public async execute(id: string): Promise<Visitation[]> {
-        const visitationsRepository = getRepository(Visitation).createQueryBuilder().where("guard_id = '"+id+"'").orderBy('count', 'ASC');
+    public async execute({ id,options, page,take }: Request): Promise<Object> {
+        const visitationRepository = getRepository(Visitation);
+        let invite = await visitationRepository.find({
+                ...options,
+                take,
+                skip: (page-1) * take
+            });
+        
+        if (!invite) {
 
-        const visitations = await visitationsRepository.getMany();
+            throw new Error('Invitation does not exists');
+        }
 
-        return visitations;
+        let total = await visitationRepository.count({guard_id:id});
+        let vtotal = await visitationRepository.count({inviter:id});
+        if(total==0){
+            total=vtotal;
+        }
+        let result={
+            data:invite,
+            total:total,
+            page:page,
+            lastpage:Math.ceil(total/take)
+        }
+        
+        
+        
+        return result;
     }
 }
 

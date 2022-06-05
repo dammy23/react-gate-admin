@@ -5,10 +5,12 @@ import {
     ObjectIdColumn,
     ObjectID,
     Column,
-    CreateDateColumn,
+    CreateDateColumn, 
+    OneToMany,
     UpdateDateColumn,
 } from 'typeorm';
 import { Creator } from './creator';
+import Visitation from '@modules/visitation/infra/typeorm/entities/Visitation';
 
 @Entity('invitation')
 export default class Invitation {
@@ -24,9 +26,15 @@ export default class Invitation {
     @Column()
     visitor_name: string;
 
+    @Column()
+    note: string;
+
 
     @Column()
     visitor_phone: string;
+
+    @Column()
+    visitor_code: string;
 
     @Column()
     visitor_image: string;
@@ -49,10 +57,16 @@ export default class Invitation {
     @Column('boolean', {default: true})
     isActive: boolean;
 
+    @Column('integer')
+    traffic_count: number;
+
     @CreateDateColumn()
     created_at: Date;
 
     @UpdateDateColumn()
     updated_at: Date;
+
+    //@OneToMany(() => Visitation, (visits) => visits.invite)
+    //visits: Visitation[]
 
 }

@@ -4,6 +4,7 @@ import DashBoardService from '@modules/general/services/DashBoardService';
 import PasswordService from '@modules/general/services/PasswordService';
 import StatService from '@modules/general/services/StatService';
 import ReportService from '@modules/general/services/ReportService';
+import MobileStatService from '@modules/general/services/MobileStatService';
 
 export default {
     async statistics(request: Request, response: Response): Promise<Response> {
@@ -45,6 +46,16 @@ export default {
         const reportService = new ReportService();
 
         const report = await reportService.execute({id});
+
+        return response.status(200).json(report);
+    },
+    
+    async mobileStat(request: Request, response: Response): Promise<Response> {
+       
+        const {id}  = request.params;
+        const mobileStatService = new MobileStatService();
+
+        const report = await mobileStatService.execute({id});
 
         return response.status(200).json(report);
     }

@@ -23,7 +23,9 @@ interface UserReturn {
     guard_id : string,
     house_number:  string, 
     street_name:  string,
-    tenants: number
+    tenants: number,
+    visitations: number,
+    image:string
 }
 
 export default class AuthenticateUserService {

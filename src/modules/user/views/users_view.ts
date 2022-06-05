@@ -11,7 +11,9 @@ export default {
             guard_id :user.guard_id,
             house_number: user.house_number, 
             street_name: user.street_name,
-            tenants: user.tenants
+            tenants: user.tenants,
+            visitations: user.visitations,
+            image:user.image
         };
     }
 }

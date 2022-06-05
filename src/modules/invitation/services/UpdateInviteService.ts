@@ -14,10 +14,11 @@ interface Request {
     multiple_entry_exit: boolean;
     no_of_people?:number;
     imageName?: string;
+    note?: string;
 }
 
 class UpdateInviteService {
-    public async execute({ id, visitor_name,visitor_phone, visitor_email,check_visitor,expiry_date,multiple_entry_exit,no_of_people, imageName }: Request): Promise<Invitation> {
+    public async execute({ id, visitor_name,visitor_phone, visitor_email,check_visitor,expiry_date,multiple_entry_exit,no_of_people, imageName,note }: Request): Promise<Invitation> {
         const invitesRepository = getRepository(Invitation);
 
         const inviteExists = await invitesRepository.findOne(id);
@@ -26,6 +27,8 @@ class UpdateInviteService {
             throw new Error('Invite does not exists');
         }
 
+        if(!inviteExists.isActive)
+            throw new Error('Invite Expired');
        
         inviteExists.visitor_name = visitor_name ? visitor_name : inviteExists.visitor_name;
         inviteExists.visitor_phone = visitor_phone ? visitor_phone : inviteExists.visitor_phone;
@@ -33,6 +36,7 @@ class UpdateInviteService {
         inviteExists.no_of_people = no_of_people ? no_of_people : inviteExists.no_of_people;
         inviteExists.check_visitor = check_visitor ? check_visitor : false;
         inviteExists.expiry_date = expiry_date ? expiry_date : inviteExists.expiry_date;
+        inviteExists.note = note ? note : inviteExists.note;
         inviteExists.multiple_entry_exit = multiple_entry_exit ? multiple_entry_exit : false;
         if (inviteExists.visitor_image) {
             const inviteImageFilePath = path.join(

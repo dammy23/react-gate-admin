@@ -5,7 +5,7 @@ import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthentica
 
 const tenantsRouter = Router();
 
-tenantsRouter.get('/tenant/list/:id',ensureAuthenticated, TenantsController.show);
+tenantsRouter.get('/tenant/list/:id', TenantsController.show);
 tenantsRouter.post('/tenant/create', ensureAuthenticated, TenantsController.create);
 tenantsRouter.put('/tenant/update/:id', ensureAuthenticated, TenantsController.update);
 tenantsRouter.delete('/tenant/delete/:id', ensureAuthenticated, TenantsController.delete);

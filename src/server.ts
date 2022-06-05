@@ -85,6 +85,7 @@ app.use('/css',express.static(__dirname + '/public/css'));
 app.use('/assets',express.static(__dirname + '/public/assets'));
 app.use('/uploads',express.static(__dirname.replace("/src","") + '/uploads'));
 const middleUtilities= new MiddleUtilities();
+
 app.use(middleUtilities.checkStatus);
 app.use(cors());
 app.use(express.json());
@@ -103,4 +104,7 @@ app.use(routes);
 
 app.listen(2390, () => {
     console.log('Server started!');
+
+    
 });
+

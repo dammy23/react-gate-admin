@@ -8,6 +8,7 @@ import DectivateTenantService from '@modules/tenant/services/DeactivateTenantSer
 
 export default {
     async create(request: Request, response: Response): Promise<Response> {
+        
         const { name, landlord_id, apartment_description, phone,email,password   } = request.body;
 
         const createTenant = new CreateTenantService();
@@ -21,16 +22,20 @@ export default {
         }
     },
     async update(request: Request, response: Response): Promise<Response> {
-        const { id } = request.params;
-        const { name, landlord_id, apartment_description, phone,email   } = request.body;
+        try{
+            const { id } = request.params;
+            const { name, landlord_id, apartment_description, phone,email   } = request.body;
 
-        const updateTenant= new UpdateTenantService();
-        
+            const updateTenant= new UpdateTenantService();
+            
         
 
             const tenant = await updateTenant.execute({ id, name, landlord_id, apartment_description, phone,email   });
 
             return response.status(200).json(tenant);
+        } catch (err) {
+            return response.status(400).json({ message:err});
+        }
         
     },
     async delete(request: Request, response: Response): Promise<Response> {
@@ -51,12 +56,69 @@ export default {
     },
     
     async show(request: Request, response: Response): Promise<Response> {
-        const { id } = request.params;
 
-        const listTenants = new ListTenantsService();
+        try{
+            const { id } = request.params;
 
-        const tenants = await listTenants.execute(id);
+            let options={};
 
-        return response.status(200).json(tenants);
+            if(request.query.search){
+                    options={
+                        ...options,
+                        where:{
+                            $and : [
+                                {landlord_id:id},
+                                {deleted:false},
+                                {$or:[
+                                    {name:new RegExp(request.query.search.toString(),'i')},
+                                    {apartment_description:new RegExp(request.query.search.toString(),'i')},
+                                    {email:new RegExp(request.query.search.toString(),'i')},
+                                    {phone:new RegExp(request.query.search.toString(),'i')}
+                                ]}
+                            ]
+                        }
+                    }
+            }else{
+                options={
+                    ...options,
+                    where:{
+                        landlord_id:id,
+                        deleted:false
+                    }
+                }
+            }
+
+            if(request.query.sortcolumn && request.query.sort){
+                if(request.query.sortcolumn!="" && request.query.sort!=""){
+                    let sort={};
+                    let key=request.query.sortcolumn.toString() as any;
+                    
+                    sort[key]=request.query.sort.toString().toUpperCase();
+                    //Object.fromEntries(Object.entries(sort).concat([[key,request.query.sort.toString().toUpperCase()]]))
+
+                    options={
+                        ...options,
+                        order:{
+                            ...sort
+                        }
+                    }
+                }
+            
+            }
+
+            const page:number = parseInt(request.query.page as any) || 1
+            const take:number = parseInt(request.query.take as any) || 10
+
+
+        
+            const listTenants = new ListTenantsService();
+        
+
+            const tenants = await listTenants.execute({id,options,page,take});
+
+            return response.status(200).json(tenants);
+        } catch (err) {
+            return response.status(400).json({ message:err});
+        }
     }
 }

@@ -110,13 +110,15 @@ pagesRouter.get('/users', (req, res) => {
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', // include, *same-origin, omit
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              "Authorization":req.session.token 
               // 'Content-Type': 'application/x-www-form-urlencoded',
             }
           })
           .then(response => response.json())
           .then(data => {
-            res.render('users',{ users:data,user:req.session.user, title: 'Users', layout: 'auth' });
+            console.log(data)
+            res.render('users',{ data:data,user:req.session.user, title: 'Users', layout: 'auth' });
           });
         
         

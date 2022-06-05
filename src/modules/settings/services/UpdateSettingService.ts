@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 
 import Setting from '../infra/typeorm/entities/Setting';
-
+import MiddleUtilities from '@config/utilities';
 interface Request {
     id: string;
     name: string,
@@ -14,6 +14,9 @@ interface Request {
 
 class UpdateSettingService {
     public async execute({ id, name, value}: Request): Promise<Setting> {
+        const middleUtilities= new MiddleUtilities();
+        let sett=await middleUtilities.getSetting("app_name");
+        console.log(sett);
         const settingsRepository = getRepository(Setting);
 
         const settingExists = await settingsRepository.findOne(id);

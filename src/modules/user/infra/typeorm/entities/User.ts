@@ -44,6 +44,12 @@ class User {
     @Column()
     password: string;
 
+    @Column()
+    push_token: string;
+
+    @Column()
+    image: string;
+
     @Column('integer', {default: 0})
     visitations: number;
 

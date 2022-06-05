@@ -16,6 +16,7 @@ const generalRouter = Router();
 
 
 generalRouter.get('/general/dashboard/:param/:param2',ensureAuthenticated, GeneralController.dashboard);
+generalRouter.get('/general/mobilestat/:id',ensureAuthenticated, GeneralController.mobileStat);
 generalRouter.get('/general/statistics/:param/:param2',ensureAuthenticated,GeneralController.statistics);
 generalRouter.get('/general/reports/::param/:param2',ensureAuthenticated,GeneralController.showReport);
 generalRouter.put('/user/password/:id', ensureAuthenticated, GeneralController.updatePassword);
