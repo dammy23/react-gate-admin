@@ -1,11 +1,14 @@
-{
+
+ {
     "type": "mongodb",
     "useUnifiedTopology": true,
-    "host": "localhost",
-    "port": 27017,
-    "database": "gatepass",
+    "host": "mongodb%2Bsrv%3A%2F%2Fdammy23%3Acanada1234%40cluster0.8kbmevv.mongodb.net%2F%3FretryWrites%3Dtrue%26w%3Dmajority",
+    "database": "gatepass", 
     "synchronize": true,
     "logging": false,
+    "logger": "debug",
+     "useNewUrlParser": true,
+     "autoLoadEntities": true,
     "entities": [
         "src/modules/user/infra/typeorm/entities/User.ts",
         "src/modules/invitation/infra/typeorm/entities/Invitation.ts",
@@ -22,3 +25,4 @@
         "migrationsDir": "src/database/migration/"
     }
  }
+  
