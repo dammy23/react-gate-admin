@@ -1,21 +1,22 @@
 
- {
+ { 
     "type": "mongodb",
-    "useUnifiedTopology": true,
-    "host": "mongodb%2Bsrv%3A%2F%2Fdammy23%3Acanada1234%40cluster0.8kbmevv.mongodb.net%2F%3FretryWrites%3Dtrue%26w%3Dmajority",
-    "database": "gatepass", 
+    "hostname": "mongodb+srv://dammy23:canada1234@cluster0.8kbmevv.mongodb.net:27017%2F%3FretryWrites%3Dtrue%26w%3Dmajority", 
+    "database":"gatepass",
+    "useNewUrlParser": true,
     "synchronize": true,
-    "logging": false,
-    "logger": "debug",
-     "useNewUrlParser": true,
-     "autoLoadEntities": true,
+    "useUnifiedTopology": true,
+    "logging": true,
+    "ssl": false,
+    "tls":false,
+    
     "entities": [
         "src/modules/user/infra/typeorm/entities/User.ts",
         "src/modules/invitation/infra/typeorm/entities/Invitation.ts",
         "src/modules/tenant/infra/typeorm/entities/Tenant.ts",
         "src/modules/visitation/infra/typeorm/entities/Visitation.ts",
         "src/modules/settings/infra/typeorm/entities/Setting.ts"
-    ],
+    ], 
     "migrations": [
         "src/database/migration/*.ts"
     ],
