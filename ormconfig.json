@@ -1,14 +1,14 @@
 
  { 
     "type": "mongodb",
-    "hostname": "mongodb+srv://dammy23:canada1234@cluster0.8kbmevv.mongodb.net:27017%2F%3FretryWrites%3Dtrue%26w%3Dmajority", 
+    "url": "mongodb+srv://dammy23:canada1234@cluster0.8kbmevv.mongodb.net/?retryWrites=true&w=majority", 
     "database":"gatepass",
     "useNewUrlParser": true,
-    "synchronize": true,
     "useUnifiedTopology": true,
+    "synchronize": true,
     "logging": true,
-    "ssl": false,
-    "tls":false,
+  
+   
     
     "entities": [
         "src/modules/user/infra/typeorm/entities/User.ts",
