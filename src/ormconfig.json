@@ -1,0 +1,29 @@
+
+ { 
+    "type": "mongodb",
+    "url": "mongodb+srv://dammy23:canada1234@cluster0.8kbmevv.mongodb.net/?retryWrites=true&w=majority", 
+    "database":"gatepass",
+    "useNewUrlParser": true,
+    "useUnifiedTopology": true,
+    "synchronize": true,
+    "logging": true,
+  
+   
+    
+    "entities": [
+        "src/modules/user/infra/typeorm/entities/User.ts",
+        "src/modules/invitation/infra/typeorm/entities/Invitation.ts",
+        "src/modules/tenant/infra/typeorm/entities/Tenant.ts",
+        "src/modules/visitation/infra/typeorm/entities/Visitation.ts",
+        "src/modules/settings/infra/typeorm/entities/Setting.ts"
+    ], 
+    "migrations": [
+        "src/database/migration/*.ts"
+    ],
+    
+    "cli": {
+        "entitiesDir": "src/modules",
+        "migrationsDir": "src/database/migration/"
+    }
+ }
+  
