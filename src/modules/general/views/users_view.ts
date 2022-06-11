@@ -1,4 +1,4 @@
-import User from '../infra/typeorm/entities/User';
+import User from '@modules/user/infra/typeorm/entities/User';
 
 export default {
     render(user: User) {

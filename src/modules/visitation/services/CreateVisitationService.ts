@@ -11,14 +11,6 @@ import MiddleUtilities from '@config/utilities';
 interface Request {
     visitor: string;
     guard_id: string;
-    traffic_count:number;
-    isActive:boolean;
-    visits:number;
-    expiry_date:string;
-    creator_id:string;
-    type:number;
-    inviter:string;
-    check_visitor:number;
     
 }
 
@@ -105,6 +97,7 @@ class CreateVisitationService {
         if(inviteExist.creator_id==inviteExist.note){
             msg='Your app was used to gain access/exit the estate';
         }
+
         visit.check_visitor=inviteExist.check_visitor
         const message = {
             to: user?.push_token,

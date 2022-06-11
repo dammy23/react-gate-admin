@@ -12,7 +12,7 @@ export default {
         const createVisitation = new CreateVisitationService();
 
         try {
-            const visitation = await createVisitation.execute({ visitor, guard_id    });
+            const visitation = await createVisitation.execute({ visitor, guard_id});
 
             return response.json(visitation);
         } catch(err) {
@@ -52,7 +52,7 @@ export default {
 
             const listVisitations = new ListVisitationsService();
 
-            const {id}  = request.params;
+           
 
             let options={};
             if(id=="all"){

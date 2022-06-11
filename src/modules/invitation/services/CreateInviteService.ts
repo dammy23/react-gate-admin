@@ -30,7 +30,7 @@ class CreateInviteService {
         const userExists = await userRepository.findOne(creator_id);
         var  user;
         if (!userExists) {
-            const tenant = await tenantRepository.findOne(inviteExist.creator_id);
+            const tenant = await tenantRepository.findOne(creator_id);
             if(!tenant){
                 throw new Error('User does not exist');
             }

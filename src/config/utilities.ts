@@ -89,7 +89,7 @@ class MiddleUtilities {
       //const url = "https://www.bulksmsnigeria.com/api/v2/sms/create";
       
       
-      let params = {
+      /**let params = {
           "api_token": apiKey,
           "to": number,
           "from": sender_id,
@@ -97,15 +97,21 @@ class MiddleUtilities {
           "gateway": "0",
           "append_sender": "0",
       };
-      Object.keys(params)
-          .forEach(key => url.searchParams.append(key, params[key]));
+      Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));**/
+
+          url.searchParams.append( "api_token", apiKey)
+          url.searchParams.append( "to", number)
+          url.searchParams.append(  "from", sender_id,)
+          url.searchParams.append( "body", message,)
+          url.searchParams.append( "gateway", "0")
+          url.searchParams.append("append_sender", "0")
       
       let headers = {
           "Content-Type": "application/json",
           "Accept": "application/json",
       };
       
-      fetch(url, {
+      fetch(url.toString(), {
           method: "POST",
           headers,
          
@@ -177,7 +183,8 @@ class MiddleUtilities {
             subscriptionTracking: {
               enable: false
             }
-          }
+          },
+          "attachments":""
         };
 
         if(attachments){
@@ -245,7 +252,8 @@ class MiddleUtilities {
           from: `"${sender_name}" <${sender_email}>`,
           to: receiver_email,
           subject: subject,
-          html: message
+          html: message,
+          "attachments":""
         } 
         if(attachments){
           mailOptions['attachments']=attachments;

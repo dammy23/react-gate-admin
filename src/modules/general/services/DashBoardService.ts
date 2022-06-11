@@ -1,4 +1,4 @@
-import { getRepository, ObjectID,Like,In, Between} from 'typeorm';
+import { getRepository, ObjectID,Like,In, Between, FindManyOptions} from 'typeorm';
 import path from 'path';
 
 import fs from 'fs';
@@ -17,11 +17,16 @@ interface Request {
 }
 
 interface Provider {
-    landlordCount:number,
-    guardCount:number,
-    tenantCount:number,
-    inviteCount:number,
-    visitationCount:number
+    landlordCount?:number,
+    guardCount?:number,
+    tenantCount?:number,
+    inviteCount?:number,
+    visitationCount?:number
+    topVisit?:Object,
+    dailyVisitation?:Object,
+    dailyVisitationCount?:number,
+    dailyInviteCount?:number
+
 }
 
 class DashBoardService {
@@ -30,9 +35,19 @@ class DashBoardService {
         const tenantsRepository = getRepository(Tenant);
         const invitationsRepository = getRepository(Invitation);
         const visitationsRepository = getRepository(Visitation);
-        let obj={};
-        obj.landlordCount = await usersRepository.count({type:"2"});
-        obj.guardCount = await usersRepository.count({type:"3"});
+        let obj:Provider={
+            landlordCount: 0,
+            guardCount: 0,
+            tenantCount: 0,
+            inviteCount: 0,
+            visitationCount: 0,
+            topVisit: {},
+            dailyVisitation: {},
+            dailyVisitationCount: 0,
+            dailyInviteCount: 0
+        };
+        obj.landlordCount = await usersRepository.count({type:2});
+        obj.guardCount = await usersRepository.count({type:3});
         obj.topVisit = await usersRepository.find({
             order: {
             visitations: "DESC",
@@ -40,34 +55,39 @@ class DashBoardService {
             },
             take:10
         });
-        obj.tenantCount = await tenantsRepository.count({status:1});
+        obj.tenantCount = await tenantsRepository.count({status:false});
         obj.inviteCount = await invitationsRepository.count();
         obj.visitationCount = await visitationsRepository.count();
         let today= moment().format("YYYY-MM-DD");
-        obj.dailyVisitation = await visitationsRepository.find( {
+        let options = {
             created_at: {
                 $gte: new Date(today+"T00:00:00.000Z"),
                 $lt:new Date(today+"T23:59:00.000Z"),
             }, 
             take:10
-        });
+        } as FindManyOptions;
+        obj.dailyVisitation = await visitationsRepository.find(options);
        
-        
-        obj.dailyVisitationCount = await visitationsRepository.count( {
+        let options1 = {
             created_at: {
                 $gte: new Date(today+"T00:00:00.000Z"),
                 $lt:new Date(today+"T23:59:00.000Z"),
             }, 
-        });
+        } as FindManyOptions;
+        
+        obj.dailyVisitationCount = await visitationsRepository.count( options1);
 
-        obj.dailyInviteCount = await invitationsRepository.count({
+        let options2 = {
             created_at: {
                     $gte: new Date(today+"T00:00:00.000Z"),
                     $lt:new Date(today+"T23:59:00.000Z"),
                 }, 
                 
            
-        });
+        } as FindManyOptions;
+        
+
+        obj.dailyInviteCount = await invitationsRepository.count(options2);
         
        
        

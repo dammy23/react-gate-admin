@@ -30,6 +30,9 @@ class Visitation {
     guard_id: string;
 
     @Column()
+    check_visitor: boolean
+
+    @Column()
     guard_name: string;
 
 

@@ -25,54 +25,63 @@ app.use(sessions({
 
 app.use(cookieParser());
 app.engine('handlebars', engine({ extname: '.hbs', defaultLayout: "main",helpers:{
-    math: function(lvalue: string | number, operator: string | number, rvalue: string | number) {
-        lvalue = parseFloat(lvalue);
-        rvalue = parseFloat(rvalue);
+    math: function(lvalue: string , operator: string, rvalue: string ) {
+        let lval = parseFloat(lvalue);
+        let rval = parseFloat(rvalue);
         return {
-            "+": lvalue + rvalue,
-            "-": lvalue - rvalue,
-            "*": lvalue * rvalue,
-            "/": lvalue / rvalue,
-            "%": lvalue % rvalue
+            "+": lval + rval,
+            "-": lval - rval,
+            "*": lval * rval,
+            "/": lval / rval,
+            "%": lval % rval
         }[operator];
     },
     formatDate: function(datetime: string, format: string) {
         if (moment) {
           // can use other formats like 'lll' too
-          format = DateFormats[format] || format;
+          
+          if(format=="short"){
+            format = DateFormats.short;
+          }else
+          if(format=="long"){
+            format = DateFormats.long;
+          }
+         
           return moment(datetime).format(format);
         }
         else {
           return datetime;
         }
       },
-    getType: function(type: string) {
-        if (type=="1") {
-            // can use other formats like 'lll' too
-           
-            return 'Administrator';
+      
+      getType: function(type: string) {
+          if (type=="1") {
+              // can use other formats like 'lll' too
+             
+              return 'Administrator';
+            }
+            else if (type=="2") {
+              // can use other formats like 'lll' too
+             
+              return 'Landlord';
+            }
+            else {
+            return "Guard";
           }
-          else if (type=="2") {
-            // can use other formats like 'lll' too
-           
-            return 'Landlord';
+        },
+        
+        getVisitStatus: function(type: string) {
+          if (type=="1") {
+              return 'Out';
+            }
+            else {
+            return "In";
           }
-          else {
-          return "Guard";
-        }
-      },
-      getVisitStatus: function(type: string) {
-        if (type=="1") {
-            return 'Out';
-          }
-          else {
-          return "In";
-        }
-      },
-      customIf: function(cond1, cond2, options) {
-        return (cond1 == cond2) ? options.fn(this) : options.inverse(this);
-    }
+        },
 
+        customIf: function(cond1:any, cond2:any, options:any) {
+          return (cond1 == cond2) ? options.fn(this) : options.inverse(this);
+      }
 
 }}));
 
@@ -83,7 +92,7 @@ app.set("views", "./src/views");
 app.use('/js',express.static(__dirname + '/public/js'));
 app.use('/css',express.static(__dirname + '/public/css'));
 app.use('/assets',express.static(__dirname + '/public/assets'));
-app.use('/uploads',express.static(__dirname.replace("/src","") + '/uploads'));
+app.use('/uploads',express.static(__dirname.replace("/src","") + '/src/assets/uploads'));
 const middleUtilities= new MiddleUtilities();
 
 app.use(middleUtilities.checkStatus);

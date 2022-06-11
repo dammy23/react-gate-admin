@@ -1,3 +1,5 @@
+
+
 import { Request, Response } from 'express';
 
 import AuthenticateUserService from '@modules/user/services/AuthenticateUserService';
@@ -10,10 +12,12 @@ export default {
 
         try {
             const { user, token } = await authenticateUser.execute({ email, password });
-            if(user.type=="3"){
-                return response.status(400).json({ message: 'This is a guard account. Use mobile app' });
+            if(user.type){
+                if(user.type==3){
+                    return response.status(400).json({ message: 'This is a guard account. Use mobile app' });
+                }
             }
-            
+                
             request.session.userid=user.id;
             request.session.user=user;
             request.session.token=token;

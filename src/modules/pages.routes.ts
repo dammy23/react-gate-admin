@@ -3,7 +3,10 @@ import fetch from 'cross-fetch';
 import moment from 'moment';
 
 
-
+interface RequestObj {
+ session: Object;
+ protocol:string;
+}
 const pagesRouter = Router();
 
 

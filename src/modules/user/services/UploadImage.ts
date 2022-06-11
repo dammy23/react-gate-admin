@@ -9,6 +9,7 @@ interface Request {
    
 }
 
+
 class CreateUserService {
     public async execute({ id,imageName }: Request): Promise<User> {
        
@@ -32,12 +33,14 @@ class CreateUserService {
                 await fs.promises.unlink(userImageFilePath);
             }
         }
-
-        if(imageName=="None"){
-            userExists.image = userExists.image;
-        }else{
+        if (userExists.image) {
+            if(imageName=="None"){
+                userExists.image = userExists.image;
+            }else{
+                
             
-            userExists.image = imageName;
+                    userExists.image = imageName;
+            }
         }
         //userExists.image = imageName ? imageName : userExists.image;
         userExists.updated_at = new Date(Date.now());
