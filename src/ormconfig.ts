@@ -10,19 +10,19 @@ module.exports = {
   
    
    "entities": [
-       "dist/modules/user/infra/typeorm/entities/User.js",
-       "dist/modules/invitation/infra/typeorm/entities/Invitation.js",
-       "dist/modules/tenant/infra/typeorm/entities/Tenant.js",
-       "dist/modules/visitation/infra/typeorm/entities/Visitation.js",
-       "dist/modules/settings/infra/typeorm/entities/Setting.js"
+       "modules/user/infra/typeorm/entities/User.js",
+       "modules/invitation/infra/typeorm/entities/Invitation.js",
+       "modules/tenant/infra/typeorm/entities/Tenant.js",
+       "modules/visitation/infra/typeorm/entities/Visitation.js",
+       "modules/settings/infra/typeorm/entities/Setting.js"
    ], 
    "migrations": [
-       "dist/database/migration/*.js"
+       "database/migration/*.js"
    ],
    
    "cli": {
-       "entitiesDir": "dist/modules",
-       "migrationsDir": "dist/database/migration/"
+       "entitiesDir": "modules/",
+       "migrationsDir": "database/migration/"
    }
 }
  
