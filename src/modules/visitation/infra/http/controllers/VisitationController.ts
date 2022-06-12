@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 
-import CreateVisitationService from '@modules/visitation/services/CreateVisitationService';
-import ListVisitationsService from '@modules/visitation/services/ListVisitationsService';
-import UpdateVisitationService from '@modules/visitation/services/UpdateVisitationService';
-import DeleteVisitationService from '@modules/visitation/services/DeleteVisitationService';
+import CreateVisitationService from '../../../../../modules/visitation/services/CreateVisitationService';
+import ListVisitationsService from '../../../../../modules/visitation/services/ListVisitationsService';
+import UpdateVisitationService from '../../../../../modules/visitation/services/UpdateVisitationService';
+import DeleteVisitationService from '../../../../../modules/visitation/services/DeleteVisitationService';
 
 export default {
     async create(request: Request, response: Response): Promise<Response> {

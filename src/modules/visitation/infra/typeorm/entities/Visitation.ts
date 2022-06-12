@@ -9,7 +9,7 @@ import {
     UpdateDateColumn,
     ManyToOne
 } from 'typeorm';
-import Invitation from '@modules/invitation/infra/typeorm/entities/Invitation';
+import Invitation from '../../../../../modules/invitation/infra/typeorm/entities/Invitation';
 
 
 @Entity('visitation')

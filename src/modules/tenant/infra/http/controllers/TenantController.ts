@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 
-import CreateTenantService from '@modules/tenant/services/CreateTenantService';
-import ListTenantsService from '@modules/tenant/services/ListTenantsService';
-import UpdateTenantService from '@modules/tenant/services/UpdateTenantService';
-import DeleteTenantService from '@modules/tenant/services/DeleteTenantService';
-import DectivateTenantService from '@modules/tenant/services/DeactivateTenantService';
+import CreateTenantService from '../../../../../modules/tenant/services/CreateTenantService';
+import ListTenantsService from '../../../../../modules/tenant/services/ListTenantsService';
+import UpdateTenantService from '../../../../../modules/tenant/services/UpdateTenantService';
+import DeleteTenantService from '../../../../../modules/tenant/services/DeleteTenantService';
+import DectivateTenantService from '../../../../../modules/tenant/services/DeactivateTenantService';
 
 export default {
     async create(request: Request, response: Response): Promise<Response> {

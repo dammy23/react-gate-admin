@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 
 import Tenant from '../infra/typeorm/entities/Tenant';
-import User from '@modules/user/infra/typeorm/entities/User';
+import User from '../../../modules/user/infra/typeorm/entities/User';
 
 interface Request {
     id: string;

@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import multer from 'multer';
-import uploadConfig from '@config/upload';
+import uploadConfig from '../../../../../config/upload';
 
 import InvitationsController from '../controllers/InvitationsController';
-import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
+import ensureAuthenticated from '../../../../../shared/infra/http/middlewares/ensureAuthenticated';
 
 const invitationRouter = Router();
 const upload = multer(uploadConfig);

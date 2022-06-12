@@ -1,9 +1,9 @@
-import User from '@modules/user/infra/typeorm/entities/User';
+import User from '../../../modules/user/infra/typeorm/entities/User';
 import { getRepository } from 'typeorm';
 import { Creator } from '../infra/typeorm/entities/creator';
-import Tenant from '@modules/tenant/infra/typeorm/entities/Tenant';
+import Tenant from '../../../modules/tenant/infra/typeorm/entities/Tenant';
 import Invitation from '../infra/typeorm/entities/Invitation';
-import MiddleUtilities from '@config/utilities';
+import MiddleUtilities from '../../../config/utilities';
 import moment from 'moment';
 interface Request {
     creator_id:string,

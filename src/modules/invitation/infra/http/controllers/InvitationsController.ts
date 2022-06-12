@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 
-import CreateInviteService from '@modules/invitation/services/CreateInviteService';
-import UpdateInviteService from '@modules/invitation/services/UpdateInviteService';
-import ListInviteService from '@modules/invitation/services/ListInviteService';
-import DeleteInviteService from '@modules/invitation/services/DeleteInviteService';
-import ListLatestInviteService from '@modules/invitation/services/ListLatestInviteService';
-import SearchInviteService from '@modules/invitation/services/SearchInviteService';
-import CheckAllInvites from '@modules/invitation/services/CheckAllInvites';
+import CreateInviteService from '../../../../../modules/invitation/services/CreateInviteService';
+import UpdateInviteService from '../../../../../modules/invitation/services/UpdateInviteService';
+import ListInviteService from '../../../../../modules/invitation/services/ListInviteService';
+import DeleteInviteService from '../../../../../modules/invitation/services/DeleteInviteService';
+import ListLatestInviteService from '../../../../../modules/invitation/services/ListLatestInviteService';
+import SearchInviteService from '../../../../../modules/invitation/services/SearchInviteService';
+import CheckAllInvites from '../../../../../modules/invitation/services/CheckAllInvites';
 
 export default {
     async create(request: Request, response: Response): Promise<Response> {

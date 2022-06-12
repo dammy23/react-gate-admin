@@ -1,8 +1,8 @@
 import { getRepository } from 'typeorm';
 
 import Tenant from '../infra/typeorm/entities/Tenant';
-import User from '@modules/user/infra/typeorm/entities/User';
-import MiddleUtilities from '@config/utilities';
+import User from '../../../modules/user/infra/typeorm/entities/User';
+import MiddleUtilities from '../../../config/utilities';
 
 interface Request {
     name: string;

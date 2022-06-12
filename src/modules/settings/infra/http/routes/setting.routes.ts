@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import SettingsController from '../controllers/SettingController';
-import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
+import ensureAuthenticated from '../../../../../shared/infra/http/middlewares/ensureAuthenticated';
 
 
 const settingsRouter = Router();

@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 
 import Setting from '../infra/typeorm/entities/Setting';
-import MiddleUtilities from '@config/utilities';
+import MiddleUtilities from '../../../config/utilities';
 interface Request {
     id: string;
     name: string,

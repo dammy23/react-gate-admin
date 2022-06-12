@@ -11,19 +11,19 @@
    
     
     "entities": [
-        "src/modules/user/infra/typeorm/entities/User.ts",
-        "src/modules/invitation/infra/typeorm/entities/Invitation.ts",
-        "src/modules/tenant/infra/typeorm/entities/Tenant.ts",
-        "src/modules/visitation/infra/typeorm/entities/Visitation.ts",
-        "src/modules/settings/infra/typeorm/entities/Setting.ts"
+        "dist/modules/user/infra/typeorm/entities/User.js",
+        "dist/modules/invitation/infra/typeorm/entities/Invitation.js",
+        "dist/modules/tenant/infra/typeorm/entities/Tenant.js",
+        "dist/modules/visitation/infra/typeorm/entities/Visitation.js",
+        "dist/modules/settings/infra/typeorm/entities/Setting.js"
     ], 
     "migrations": [
-        "src/database/migration/*.ts"
+        "dist/database/migration/*.js"
     ],
     
     "cli": {
-        "entitiesDir": "src/modules",
-        "migrationsDir": "src/database/migration/"
+        "entitiesDir": "dist/modules",
+        "migrationsDir": "dist/database/migration/"
     }
  }
   

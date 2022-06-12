@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import TenantsController from '../controllers/TenantController';
-import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
+import ensureAuthenticated from '../../../../../shared/infra/http/middlewares/ensureAuthenticated';
 
 const tenantsRouter = Router();
 

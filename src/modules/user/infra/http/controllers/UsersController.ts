@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 
-import CreateUserService from '@modules/user/services/CreateUserService';
-import ListUsersService from '@modules/user/services/ListUsersService';
-import ListUserSingleService from '@modules/user/services/ListUserSingleService';
-import UpdateUserService from '@modules/user/services/UpdateUserService';
-import DeleteUserService from '@modules/user/services/DeleteUserService';
-import PasswordChange from '@modules/user/services/PasswordChange';
-import UploadImage from '@modules/user/services/UploadImage';
+import CreateUserService from '../../../../../modules/user/services/CreateUserService';
+import ListUsersService from '../../../../../modules/user/services/ListUsersService';
+import ListUserSingleService from '../../../../../modules/user/services/ListUserSingleService';
+import UpdateUserService from '../../../../../modules/user/services/UpdateUserService';
+import DeleteUserService from '../../../../../modules/user/services/DeleteUserService';
+import PasswordChange from '../../../../../modules/user/services/PasswordChange';
+import UploadImage from '../../../../../modules/user/services/UploadImage';
 
 export default { 
     async create(request: Request, response: Response): Promise<Response> {

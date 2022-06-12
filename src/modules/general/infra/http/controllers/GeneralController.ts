@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 
-import DashBoardService from '@modules/general/services/DashBoardService';
-import PasswordService from '@modules/general/services/PasswordService';
-import StatService from '@modules/general/services/StatService';
-import ReportService from '@modules/general/services/ReportService';
-import MobileStatService from '@modules/general/services/MobileStatService';
+import DashBoardService from '../../../../../modules/general/services/DashBoardService';
+import PasswordService from '../../../../../modules/general/services/PasswordService';
+import StatService from '../../../../../modules/general/services/StatService';
+import ReportService from '../../../../../modules/general/services/ReportService';
+import MobileStatService from '../../../../../modules/general/services/MobileStatService';
 
 export default {
     async statistics(request: Request, response: Response): Promise<Response> {

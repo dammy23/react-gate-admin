@@ -2,7 +2,7 @@ import { getRepository, ObjectID } from 'typeorm';
 
 import { sign } from 'jsonwebtoken';
 
-import auth from '@config/auth';
+import auth from '../../../config/auth';
 
 import user_view from '../views/users_view';
 

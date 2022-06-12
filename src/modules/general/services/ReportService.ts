@@ -1,11 +1,11 @@
 import { getRepository } from 'typeorm';
 import path from 'path';
 import fs from 'fs';
-import User from '@modules/user/infra/typeorm/entities/User';
-import Tenant from '@modules/tenant/infra/typeorm/entities/Tenant';
-import Invitation from '@modules/invitation/infra/typeorm/entities/Invitation';
-import Visitation from '@modules/visitation/infra/typeorm/entities/Visitation';
-import Setting from '@modules/settings/infra/typeorm/entities/Setting';
+import User from '../../../modules/user/infra/typeorm/entities/User';
+import Tenant from '../../../modules/tenant/infra/typeorm/entities/Tenant';
+import Invitation from '../../../modules/invitation/infra/typeorm/entities/Invitation';
+import Visitation from '../../../modules/visitation/infra/typeorm/entities/Visitation';
+import Setting from '../../../modules/settings/infra/typeorm/entities/Setting';
 
 
 

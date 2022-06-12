@@ -10,7 +10,7 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 import { Creator } from './creator';
-import Visitation from '@modules/visitation/infra/typeorm/entities/Visitation';
+import Visitation from '../../../../../modules/visitation/infra/typeorm/entities/Visitation';
 
 @Entity('invitation')
 export default class Invitation {

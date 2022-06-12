@@ -1,4 +1,4 @@
-import User from '@modules/user/infra/typeorm/entities/User';
+import User from '../../../modules/user/infra/typeorm/entities/User';
 import { getRepository } from 'typeorm';
 
 

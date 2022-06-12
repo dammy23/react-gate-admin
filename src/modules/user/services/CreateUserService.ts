@@ -3,7 +3,7 @@ import user_view from '../views/users_view';
 
 import User from '../infra/typeorm/entities/User';
 import BCryptHashProvider from '../providers/HashProvider/implementations/BCryptHashProvider';
-import MiddleUtilities from '@config/utilities';
+import MiddleUtilities from '../../../config/utilities';
 interface Request {
     name: string;
     email: string;

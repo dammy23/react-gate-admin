@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import VisitationController from '../controllers/VisitationController';
-import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
+import ensureAuthenticated from '../../../../../shared/infra/http/middlewares/ensureAuthenticated';
 
 const visitationsRouter = Router();
 

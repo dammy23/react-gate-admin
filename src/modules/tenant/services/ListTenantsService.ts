@@ -1,4 +1,4 @@
-import datatables from 'public/assets/vendor/datatables/datatables';
+
 import { getRepository } from 'typeorm';
 
 import Tenant from '../infra/typeorm/entities/Tenant';

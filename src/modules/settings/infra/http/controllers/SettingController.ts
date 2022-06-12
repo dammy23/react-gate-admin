@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 
-import CreateSettingService from '@modules/settings/services/CreateSettingService';
-import ListSettingsService from '@modules/settings/services/ListSettingsService';
-import UpdateSettingService from '@modules/settings/services/UpdateSettingService';
-import DeleteSettingService from '@modules/settings/services/DeleteSettingService';
+import CreateSettingService from '../../../../../modules/settings/services/CreateSettingService';
+import ListSettingsService from '../../../../../modules/settings/services/ListSettingsService';
+import UpdateSettingService from '../../../../../modules/settings/services/UpdateSettingService';
+import DeleteSettingService from '../../../../../modules/settings/services/DeleteSettingService';
 
 export default {
     async create(request: Request, response: Response): Promise<Response> {

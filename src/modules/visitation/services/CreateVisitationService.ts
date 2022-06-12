@@ -1,11 +1,11 @@
 import { getRepository } from 'typeorm';
 
 import Visitation from '../infra/typeorm/entities/Visitation';
-import User from '@modules/user/infra/typeorm/entities/User';
-import Invitation from '@modules/invitation/infra/typeorm/entities/Invitation';
-import Tenant from '@modules/tenant/infra/typeorm/entities/Tenant';
+import User from '../../../modules/user/infra/typeorm/entities/User';
+import Invitation from '../../../modules/invitation/infra/typeorm/entities/Invitation';
+import Tenant from '../../../modules/tenant/infra/typeorm/entities/Tenant';
 import moment from "moment";
-import MiddleUtilities from '@config/utilities';
+import MiddleUtilities from '../../../config/utilities';
 
 
 interface Request {

@@ -2,7 +2,7 @@
 
 import { Request, Response } from 'express';
 
-import AuthenticateUserService from '@modules/user/services/AuthenticateUserService';
+import AuthenticateUserService from '../../../../../modules/user/services/AuthenticateUserService';
 
 
 export default {
